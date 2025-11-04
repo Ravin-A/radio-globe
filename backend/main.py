@@ -1,10 +1,6 @@
-from flask import Flask, jsonify
-from flask import request
-import os
+from flask import Flask, jsonify, request, Response
 import requests
 from flask_cors import CORS
-from flask import request, Response
-
 
 app = Flask(__name__)
 CORS(app)  # allow all origins
@@ -13,7 +9,7 @@ CORS(app)  # allow all origins
 def index():
     return jsonify({"message": "Radio Explorer API is running"}), 200
 
-#test route
+# test route
 @app.route("/api/ping")
 def ping():
     return jsonify({"ok": True, "msg": "pong"}), 200
@@ -22,16 +18,26 @@ def ping():
 def get_stations_by_country(country_name):
     try:
         url = f"https://de1.api.radio-browser.info/json/stations/bycountry/{country_name}"
-
         response = requests.get(url, timeout=10)
         response.raise_for_status()
-
         data = response.json()
         return jsonify(data), 200
-    
     except requests.exceptions.RequestException as e:
         return jsonify({"error": str(e)}), 500
-    
+
+@app.route("/api/stations")
+def get_all_stations():
+    try:
+        url = "https://de1.api.radio-browser.info/json/stations"
+        response = requests.get(url, timeout=10)
+        response.raise_for_status()
+        data = response.json()
+        stations = [s for s in data if s.get("url")]
+
+        return jsonify(stations), 200
+    except requests.exceptions.RequestException as e:
+        return jsonify({"error": str(e)}), 500
+
 @app.route("/api/proxy")
 def proxy_station():
     url = request.args.get("url")
