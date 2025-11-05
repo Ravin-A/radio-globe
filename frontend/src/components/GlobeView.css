@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+.radio-logo {
+  position: fixed;
+  top: 25px;
+  left: 40px;
+  z-index: 2000;
+  font-family: 'Pacifico', cursive;
+  font-size: 3.2rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  user-select: none;
+  pointer-events: none;
+
+  background: linear-gradient(90deg, #ff8a00, #f9d423, #ff416c, #ff4b2b);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+
+  animation: logoShine 8s ease-in-out infinite, logoPulse 3s ease-in-out infinite;
+  text-shadow: 0px 0px 12px rgba(255, 150, 0, 0.3);
+
+  line-height: 1.5;         /* slightly taller line spacing */
+  padding: 10px 0;          /* add extra vertical space */
+  height: auto;             /* let container grow with content */
+  display: inline-block;
+}
+
+@keyframes logoShine {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes logoPulse {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.4); }
+}
