@@ -11,13 +11,11 @@ function GlobeView() {
   const globeRef = useRef();
   const audioRef = useRef(null);
 
-  // Determine day or night
   useEffect(() => {
     const hour = new Date().getHours();
     setIsDaytime(hour >= 6 && hour < 18);
   }, []);
 
-  // Fetch stations
   useEffect(() => {
     const fetchStations = async () => {
       try {
@@ -35,7 +33,6 @@ function GlobeView() {
 
         setAllStations(stationsWithCoords);
 
-        // Batch load for performance
         let index = 0;
         const batchSize = 500;
         const interval = setInterval(() => {
@@ -54,7 +51,6 @@ function GlobeView() {
     fetchStations();
   }, []);
 
-  // Handle audio
   useEffect(() => {
     if (!currentStation || !currentStation.url) return;
     const audio = audioRef.current;
@@ -77,7 +73,6 @@ function GlobeView() {
     setCurrentStation(station);
   }, []);
 
-  // Handle resizing
   useEffect(() => {
     const resize = () => {
       if (globeRef.current) {
@@ -96,7 +91,7 @@ function GlobeView() {
         inset: 0,
         overflow: "hidden",
         background: isDaytime
-          ? "radial-gradient(circle at center, #d7e8ff, #a6c0ff)"
+          ? "radial-gradient(circle at center, #f9c3c3ff, #5a5300ff)"
           : "radial-gradient(circle at center, #0b0d17, #000000)",
       }}
     >
