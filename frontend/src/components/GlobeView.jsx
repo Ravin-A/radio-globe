@@ -3,6 +3,8 @@ import Globe from "react-globe.gl";
 import Hls from "hls.js";
 import "./GlobeView.css";
 
+const API_BASE = import.meta.env.VITE_BACKEND_URL;
+
 function GlobeView() {
   const [allStations, setAllStations] = useState([]);
   const [visibleStations, setVisibleStations] = useState([]);
@@ -19,7 +21,7 @@ function GlobeView() {
   useEffect(() => {
     const fetchStations = async () => {
       try {
-        const res = await fetch("http://127.0.0.1:5000/api/stations");
+        const res = await fetch(`${API_BASE}/api/stations`);
         const data = await res.json();
 
         const stationsWithCoords = data
