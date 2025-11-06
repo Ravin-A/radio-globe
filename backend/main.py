@@ -3,7 +3,7 @@ import requests
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)  # allow all origins
+CORS(app, origins=["https://radio-globe-frontend.vercel.app"])
 
 @app.route("/")
 def index():

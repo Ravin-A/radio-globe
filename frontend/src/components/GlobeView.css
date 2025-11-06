@@ -21,9 +21,9 @@
   animation: logoShine 8s ease-in-out infinite, logoPulse 3s ease-in-out infinite;
   text-shadow: 0px 0px 12px rgba(255, 150, 0, 0.3);
 
-  line-height: 1.5;         /* slightly taller line spacing */
-  padding: 10px 0;          /* add extra vertical space */
-  height: auto;             /* let container grow with content */
+  line-height: 1.5;   
+  padding: 10px 0;         
+  height: auto;            
   display: inline-block;
 }
 
