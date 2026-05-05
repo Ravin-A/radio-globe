@@ -28,7 +28,7 @@ def get_stations_by_country(country_name):
 @app.route("/api/stations")
 def get_all_stations():
     try:
-        url = "https://de1.api.radio-browser.info/json/stations?limit=50000&hidebroken=true&has_geo_info=true"
+        url = "https://de1.api.radio-browser.info/json/stations?limit=70000&hidebroken=true&has_geo_info=true"
         response = requests.get(url, timeout=10)
         response.raise_for_status()
         data = response.json()
